@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="hu">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Séfbérlés – Web Frontend</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container topbar__inner">
+        <div class="brand">
+          <div class="brand__logo" aria-hidden="true">🍳</div>
+          <div>
+            <div class="brand__title">Séfbérlés</div>
+            <div class="brand__subtitle">Bérelhető séfek – modern frontend demó</div>
+          </div>
+        </div>
+        <div class="topbar__actions">
+          <span class="pill" id="statusPill">Betöltés…</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="hero">
+        <div class="hero__copy">
+          <h1 class="h1">Találd meg a tökéletes séfet</h1>
+          <p class="lead">
+            Böngéssz a bérelhető séfek között, és adj le bérlési kérést. A visszajelzés
+            mindig látszik.
+          </p>
+        </div>
+      </section>
+
+      <section class="card" aria-label="Keresés">
+        <div class="card__header">
+          <h2 class="h2">Keresés</h2>
+        </div>
+
+        <div class="grid grid--2">
+          <label class="field">
+            <span class="field__label">Név</span>
+            <input id="nameSearch" class="input" type="text" placeholder="pl. Sophia" />
+          </label>
+
+          <label class="field">
+            <span class="field__label">Konyhatípus (cuisine)</span>
+            <input id="cuisineSearch" class="input" type="text" placeholder="pl. Italian" />
+          </label>
+        </div>
+
+        <div class="card__footer">
+          <button id="clearBtn" class="btn btn--ghost" type="button">Szűrés törlése</button>
+          <div class="muted" id="resultsMeta">—</div>
+        </div>
+      </section>
+
+      <section class="grid grid--cards" aria-label="Séfek">
+        <div class="card card--wide">
+          <div class="card__header">
+            <h2 class="h2">Bérelhető séfek</h2>
+            <div class="muted" id="listInfo">Betöltés…</div>
+          </div>
+
+          <div id="chefsGrid" class="chefs" role="list" aria-label="Séf lista"></div>
+
+          <div id="emptyState" class="empty" hidden>
+            <div class="empty__title">Nincs találat</div>
+            <div class="empty__text">Próbálj más név/konyha kombinációt.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" aria-label="Bérlés">
+        <div class="card__header">
+          <h2 class="h2">Bérlési űrlap</h2>
+          <div class="muted">A felhasználó hitelesítése nem része a feladatnak.</div>
+        </div>
+
+        <form id="bookingForm" class="form" autocomplete="off">
+          <input type="hidden" id="selectedChefId" value="" />
+
+          <div class="grid grid--2">
+            <label class="field">
+              <span class="field__label">Séf</span>
+              <select id="chefSelect" class="input" required>
+                <option value="" selected disabled>Válassz séfet…</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span class="field__label">UserId (tetszőleges)</span>
+              <input id="userId" class="input" type="number" min="1" step="1" value="101" />
+            </label>
+          </div>
+
+          <div class="grid grid--2">
+            <label class="field">
+              <span class="field__label">Naptól</span>
+              <input id="fromDate" class="input" type="date" required />
+            </label>
+
+            <label class="field">
+              <span class="field__label">Napok száma</span>
+              <input id="days" class="input" type="number" min="1" step="1" value="1" required />
+            </label>
+          </div>
+
+          <div class="form__actions">
+            <button class="btn" type="submit">Bérlés leadása</button>
+            <button class="btn btn--ghost" type="button" id="prefillFromSelected">Séf választás</button>
+          </div>
+
+          <div id="formMessage" class="alert" role="status" aria-live="polite" hidden></div>
+        </form>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer__inner">
+        <span class="muted">Frontend feladat – Séfbérlés rendszer</span>
+      </div>
+    </footer>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
+
