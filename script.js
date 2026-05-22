@@ -63,10 +63,17 @@ function escapeHtml(str) {
 function formatMoney(n) {
   const num = Number(n);
   if (Number.isNaN(num)) return String(n);
-  return `${num} Ft`;
+  return `${num} €`;
 }
 
+
+
+
+
 function renderChefs(list) {
+
+
+
   el.chefsGrid.innerHTML = '';
 
   if (!list.length) {
